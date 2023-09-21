@@ -1,12 +1,12 @@
-name: Construir e Testar
+name: CI de testes API JAVA
 
 on:
   push:
-    branches:
-      - main
+    branches: [master]
   pull_request:
-    branches:
-      - main
+    branches: [master]
+  schedule:
+    - cron: '0  9,11,15,18  * * 1,2,3,4,5,6'
 
 jobs:
   build:
