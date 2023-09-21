@@ -1,0 +1,31 @@
+name: Construir e Testar
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar repositório
+        uses: actions/checkout@v2
+
+      - name: Configurar JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      - name: Validar Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Construir com Gradle
+        run: ./gradlew build
+
+      - name: Testar com Gradle
+        run: ./gradlew test
